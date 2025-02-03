@@ -24,6 +24,43 @@ This sentiment analysis project was conducted as a solo project within the BeCod
 
   * Sentiment Trend Analysis
 
+## File Structure
+
+```plaintext
+
+    challenge-sentiment-analysis/
+    ├── data/
+    │   ├── sst5_dataset/
+    │   │   ├── test/
+    │   │   ├── train/
+    │   │   ├── validation/
+    │   │   └── dataset_dict
+    │   └── reddit_data.json
+    ├── model/
+    │   ├── config.json
+    │   └── model.safetensors
+    ├── output/
+    │   ├── confusion_matrix.png
+    │   ├── evaluation.txt
+    │   ├── sentiment_distribution.txt
+    │   ├── sentiment_intensity.txt
+    │   ├── negative_wordcloud.png
+    │   ├── neutral_wordcloud.png
+    │   ├── positive_wordcloud.png
+    │   └── sentiment_trend.png
+    ├── results/
+    ├── tokenizer/
+    │   ├── special_tokens_map.json
+    │   ├── tokenizer_config.json
+    │   └── vocab.txt
+    ├── 1-scraping.py
+    ├── 2-model-training.py
+    ├── 3-prediction.py
+    ├── config.json
+    └── README.md
+
+```
+
 ## Installation
 
 1. Clone the repository:
@@ -52,6 +89,10 @@ pip install -r requirements.txt
 from datasets import load_dataset
 dataset = load_dataset("SetFit/sst5")
 ```
+
+5. Set up configurations
+   * Register as developer at reddit.com
+   * Register your project and enter your credentials in the `config.json` file.
 
 ## Usage
 
