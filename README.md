@@ -6,13 +6,13 @@ This sentiment analysis project was conducted as a solo project within the BeCod
 
 ## Project Components
 
-* **Web Scraping:** Utilized the Reddit API to scrape 10,000 posts containing the hashtag #queengambit.
+* **Web Scraping:** Utilized the Reddit API to scrape 10,000+ posts containing the hashtag #queensgambit.
 
-* **Data Preprocessing:** Cleaned and prepared the data for sentiment analysis, including tokenization, stop-word removal, and normalization.
+* **Data Preprocessing:** Cleaned and prepared the data for sentiment analysis, using tokenization and other techniques.
 
 * **Model Selection:** Chose TinyBERT for its efficiency in fine-tuning on CPU resources, due to constraints.
 
-* **Model Fine-Tuning:** Fine-tuned TinyBERT on a simplified version of the SST5 dataset, reducing the labels from 5 to 3 (positive, neutral, negative).
+* **Model Fine-Tuning:** Fine-tuned TinyBERT on a simplified version of the [SST5 dataset](https://huggingface.co/datasets/SetFit/sst5), reducing the labels from 5 to 3 (positive, neutral, negative).
 
 * **Prediction Generation:** Generated sentiment predictions for the scraped Reddit data.
 
@@ -116,13 +116,13 @@ dataset = load_dataset("SetFit/sst5")
 
 ### Web Scraping
 
-Data was scraped using the Reddit API, focusing on posts with the hashtag #queengambit. A total of 10,000 posts were collected.
+Data was scraped using the Reddit API, focusing on posts with the hashtag #queensgambit. A total of 10,000+ posts were collected.
 
 ### Sentiment Analysis
 
 * Model: TinyBERT
 
-* Dataset: SST5 (reduced to 3 classes)
+* Dataset: [SST5](https://huggingface.co/datasets/SetFit/sst5) (reduced to 3 classes)
 
 * Techniques: Preprocessing, Fine-tuning, and Prediction
 
@@ -138,9 +138,9 @@ Data was scraped using the Reddit API, focusing on posts with the hashtag #queen
 
 * Positive, neutral, and negative sentiment distribution across Reddit posts.
 
-* Insights into how sentiment evolved over the series' airing and its aftermath.
+* Intensity of sentiments and most prominent words for each category.
 
-* Identification of significant spikes or shifts in public opinion.
+* Insights into how sentiment evolved over the series' airing and its aftermath.
 
 ## Conclusion
 
