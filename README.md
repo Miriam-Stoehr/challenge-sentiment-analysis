@@ -210,6 +210,8 @@ Deployment of the model as an API for real-time sentiment analysis.
 
 * Reddit for data availability
 
+<p>&nbsp;</p>
+
 # Annex: Model Overview
 
 In this project, various models were explored to perform sentiment analysis, each with distinct architectures and methodologies. Below is an overview of the models considered:
