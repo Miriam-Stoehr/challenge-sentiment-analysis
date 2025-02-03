@@ -1,0 +1,8 @@
+Sentiment Distribution:
+
+Sentiment  Count Percentage
+ positive   4259     35.51%
+  neutral   4257     35.50%
+ negative   3477     28.99%
+
+Overall Sentiment: positive

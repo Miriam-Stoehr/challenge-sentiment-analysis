@@ -1,0 +1,8 @@
+Sentiment Intensity Distribution:
+
+Sentiment  Count Percentage
+ positive   8347     69.60%
+ negative   2657     22.15%
+  neutral    989      8.25%
+
+Overall Sentiment Intensity: positive
