@@ -10,6 +10,7 @@ import sys
 from textblob import TextBlob
 from transformers import BertForSequenceClassification, BertTokenizer
 from torch.utils.data import DataLoader, Dataset
+from tqdm import tqdm
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 from wordcloud import WordCloud, STOPWORDS
 
@@ -38,10 +39,10 @@ class SentimentAnalyzer:
         batch_size = 32
         dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
         all_predictions = []
-        total_batches = len(dataloader)
 
         with torch.no_grad():
-            for counter, batch in enumerate(dataloader, start=1):
+            # Wrap dataloader with tqdm to track progress
+            for batch in tqdm(dataloader, desc="Processing Batches", unit="batch"):
                 inputs = self.tokenizer(
                     batch,
                     padding=True,
@@ -51,10 +52,6 @@ class SentimentAnalyzer:
                 )
                 outputs = self.model(**inputs)
                 all_predictions.extend(torch.argmax(outputs.logits, dim=1).tolist())
-                
-                # Print progress
-                sys.stdout.write(f"\rProcessing batch {counter}/{total_batches}...")   # \r moves cursor back to the start of the line
-                sys.stdout.flush()     # Ensures immediate output to the console
 
         print("\n") # Move to a new line after batch processing is complete
         return [self.label_map[pred] for pred in all_predictions]
@@ -215,10 +212,13 @@ class SentimentAnalysisPipeline:
         """Calculates sentiment intensity using VADER and classifies the results."""
         print("Calculating sentiment intensity...\n")
         cleaned_df = self.processor.df
-        vader_analyzer = SentimentIntensityAnalyzer()
+        vader_analyzer = self.vader
 
-        # Calculate VADER compound scores
-        cleaned_df['vader_compound'] = cleaned_df['text'].apply(lambda x: vader_analyzer.polarity_scores(x)['compound'])
+        # Apply VADER sentiment analysis with progress bar
+        tqdm.pandas(desc="Processing Sentiment Intensity")
+
+        # Calculate VADER compound scores (Wrap apply function with progress_apply using tqdm)
+        cleaned_df['vader_compound'] = cleaned_df['text'].progress_apply(lambda x: vader_analyzer.polarity_scores(x)['compound'])
         # Classify the compound scores
         cleaned_df['vader_sentiment'] = cleaned_df['vader_compound'].apply(SentimentAnalysisPipeline.classify_vader_score)
         
@@ -254,7 +254,7 @@ class SentimentAnalysisPipeline:
         print("Sentiment intensity saved to './output/sentiment_intensity.txt'.\n")
 
     def generate_wordclouds(self):
-        """Generates a word cloud per sentiment for nuons and adjectives based on the text data."""
+        """Generates a word cloud per sentiment for nouns and adjectives based on the text data."""
         print("Generating word clouds...\n")
         cleaned_df = self.processor.df
 
