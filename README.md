@@ -29,40 +29,47 @@ This sentiment analysis project was conducted as a solo project within the BeCod
 1. Clone the repository:
 
 ```bash
-  git clone <repository_url>
-  cd sentiment-analysis-project
+git clone <repository_url>
+cd sentiment-analysis-project
 ```
 
 2. Set up a virtual environment:
 
 ```bash
-  python -m venv venv
-  source venv/bin/activate # On Windows use: venv\Scripts\activate
+python -m venv venv
+source venv/bin/activate # On Windows use: venv\Scripts\activate
 ```
 
 3. Install required packages:
 
 ```bash
-  pip install -r requirements.txt
+pip install -r requirements.txt
+```
+
+4. Download SST5 Dataset and save under "./data/"
+
+```bash
+from datasets import load_dataset
+dataset = load_dataset("SetFit/sst5")
 ```
 
 ## Usage
 
 1. Web Scraping:
 
-  * Use the Reddit API to scrape data related to "The Queen's Gambit".
+    * Use the Reddit API to scrape data related to "The Queen's Gambit".
 
 2. Fine-tuning TinyBERT:
 
-  * Fine-tune TinyBERT on the SST5 dataset, reduced to three sentiment classes (positive, neutral, negative).
+    * Fine-tune TinyBERT on the SST5 dataset, reduced to three sentiment classes (positive, neutral, negative).
 
 3. Sentiment Analysis:
 
-  * Generate predictions on the scraped Reddit data.
+    * Generate predictions on the scraped Reddit data.
 
 4. Data Analysis:
 
-  * Conduct various analyses, including sentiment distribution, intensity, and trends over time.
+    * Conduct various analyses, including sentiment distribution, intensity, and trends over time.
 
 ## Methodology
 
