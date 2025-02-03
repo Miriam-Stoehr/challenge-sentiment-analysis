@@ -231,7 +231,7 @@ class SentimentAnalysisPipeline:
         intensity_counts_formatted['Percentage'] = intensity_percentages_formatted.map("{:.2f}%".format)
 
         # Display sentiment intensity distribution
-        print("Sentiment Intensity Distribution:\n")
+        print("\nSentiment Intensity Distribution:\n")
         print(intensity_counts_formatted.to_string(index=False))
         print("=" * 50)
 
